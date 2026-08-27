@@ -1,0 +1,10 @@
+id,party_name,party_code,opening_balance,balance_type,is_cash_amount,address,city,pincode,mobile_no_sms,mobile_no,phone_no,email_id,send_sms_type,is_active
+1,Party_00001,PC00001,47845.54,credit,True,389 Example Street,City_471,295203,9537017955,9619092670,0639739799,party_00001@example.com,sms,active
+2,Party_00002,PC00002,6454.92,credit,False,167 Example Street,City_375,420549,9134824614,9385395594,0167214531,party_00002@example.com,email,active
+3,Party_00003,PC00003,84619.32,debit,True,829 Example Street,City_98,930655,9833263413,9790300645,0425677725,party_00003@example.com,sms,inactive
+4,Party_00004,PC00004,43551.21,debit,True,394 Example Street,City_427,758762,9665646904,9564592693,0216511888,party_00004@example.com,sms,active
+5,Party_00005,PC00005,55393.0,credit,False,235 Example Street,City_214,373063,9785095359,9104099165,0614575575,party_00005@example.com,sms,inactive
+6,Party_00006,PC00006,45057.98,credit,True,617 Example Street,City_172,817282,9108995235,9920308730,0299699348,party_00006@example.com,whatsapp,inactive
+7,Party_00007,PC00007,4592.64,debit,False,595 Example Street,City_295,762466,9277966749,9924502867,0578021540,party_00007@example.com,email,active
+8,Party_00008,PC00008,58240.02,debit,True,207 Example Street,City_215,406304,9902415754,9323124851,0295612436,party_00008@example.com,whatsapp,inactive
+9,Party_00009,PC00009,96477.39,debit,True,872 Example Street,City_107,742695,9785459261,9859109266,0435213348,party_00009@example.com,sms,active

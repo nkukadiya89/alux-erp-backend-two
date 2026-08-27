@@ -1,0 +1,3 @@
+name,section_type,area,dimention_unit,elongation_50mm_min,elongation_min,hardness,section_thickness_over,section_thickness_upto,tensile_min,tensile_max,yield_min,yield_max,yield_unit,electrical_conductivity_min,electrical_conductivity_max,temper_code_old,temper_code_new,heat_treatment
+T4,Hollow,100,MM,12,14,75,0,25,180,220,120,150,MPa,55,60,T4,T4,True
+T6,Hollow,150,MM,8,10,95,0,50,290,340,240,290,MPa,40,45,T6,T6,True

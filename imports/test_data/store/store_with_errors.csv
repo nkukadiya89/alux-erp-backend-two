@@ -1,0 +1,8 @@
+Store Code,Store Name,Store Type,Plant Code,Allows Negative Stock
+ST001,Valid Store 1,RAW,PLT001,False
+ST001,Duplicate Store Code,RAW,PLT001,False
+ST003,Valid Store 3,BILLET,PLT001,True
+ST004,Invalid Store Type Store,INVALID,PLT001,False
+ST005,Valid Store 5,WIP,PLT001,False
+ST006,Store with Invalid Plant,RAW,INVALID_PLANT,False
+ST007,Valid Store 7,SCRAP,PLT001,True

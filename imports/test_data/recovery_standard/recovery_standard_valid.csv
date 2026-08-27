@@ -1,0 +1,3 @@
+Furnace Type,Material Type,Min Recovery,Max Recovery,Standard Loss,Status,Effective From
+Tilting,Scrap,90,95,5,Active,2023-01-01
+Stationary,Ingot,95,98,2,Active,2023-01-01
