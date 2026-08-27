@@ -2,7 +2,32 @@
 
 from django.db import migrations, models
 
+def convert_holding_time(apps, schema_editor):
+    Model = apps.get_model(
+        "dietool_production",
+        "DieNitridingBatch",
+    )
 
+    table_name = schema_editor.quote_name(Model._meta.db_table)
+    column_name = schema_editor.quote_name("holding_time")
+
+    with schema_editor.connection.cursor() as cursor:
+        cursor.execute(
+            f"""
+            ALTER TABLE {table_name}
+            ALTER COLUMN {column_name} DROP DEFAULT
+            """
+        )
+
+        cursor.execute(
+            f"""
+            ALTER TABLE {table_name}
+            ALTER COLUMN {column_name}
+            TYPE timestamp with time zone
+            USING NULL
+            """
+        )
+		
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -10,24 +35,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL(
-            sql="""
-                ALTER TABLE dietool_production_dienitridingbatch
-                ALTER COLUMN holding_time DROP DEFAULT;
-
-                ALTER TABLE dietool_production_dienitridingbatch
-                ALTER COLUMN holding_time TYPE timestamp with time zone
-                USING NULL;
-            """,
-            reverse_sql="""
-                ALTER TABLE dietool_production_dienitridingbatch
-                ALTER COLUMN holding_time TYPE numeric
-                USING NULL;
-            """,
+        migrations.RunPython(
+            convert_holding_time,
+            migrations.RunPython.noop,
         ),
         migrations.AlterField(
-            model_name='dienitridingbatch',
-            name='holding_time',
-            field=models.DateTimeField(blank=True, null=True),
+            model_name="dienitridingbatch",
+            name="holding_time",
+            field=models.DateTimeField(
+                blank=True,
+                null=True,
+            ),
         ),
     ]
