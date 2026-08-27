@@ -1,0 +1,6 @@
+Name,Description
+Loose Packing,Items are packed loosely without any specific arrangement
+Box Packing,Items are packed in boxes
+Pallet Packing,Items are packed on pallets
+Crate Packing,Items are packed in crates
+Bundle Packing,Items are bundled together

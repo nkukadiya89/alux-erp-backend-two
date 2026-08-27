@@ -1,0 +1,3 @@
+# This file ensures the load_testing directory is tracked by git
+# Test reports in reports/ directory are ignored via .gitignore
+

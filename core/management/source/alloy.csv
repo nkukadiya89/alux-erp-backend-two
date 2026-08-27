@@ -1,0 +1,4 @@
+alloy_code,color_code,standard_name,si_min,si_max,mg_min,mg_max,fe_min,fe_max,mn_min,mn_max,cu_min,cu_max,zn_min,zn_max,cr_min,cr_max,ti_min,ti_max,bi_min,bi_max,pb_min,pb_max,sn_min,sn_max,others_each_min,others_each_max,others_total_min,others_total_max,al_min,al_max,remark
+19000,,IS 733 – 1983,,0.5,,,,0.6,,0.1,,0.1,,,,,,,,,,,,,,,,,,98.7,Test
+19001,,IS 733 – 1983,,0.5,,,,0.6,,0.1,,0.1,,,,,,,,,,,,,,,,,,98.7,Test1
+1350,,EN 573-3:2013,,0.1,,,,0.4,,0.01,,0.05,,0.05,,0.01,,,,,,,,,,0.03,,0.1,,99.25,Test2

@@ -1,0 +1,6 @@
+Code,Name,Capacity,Billet Diameter,Billet Length Min,Billet Length Max,Billet Weight,Extrusion Length Min,Extrusion Length Max
+PRESS001,Press Machine 1,1000,150,500,1000,25.5,1000,5000
+PRESS002,Press Machine 2,1500,200,600,1200,30.0,1200,6000
+PRESS003,Press Machine 3,2000,250,700,1400,35.5,1500,7000
+PRESS004,Press Machine 4,1200,180,550,1100,28.0,1100,5500
+PRESS005,Press Machine 5,1800,220,650,1300,32.5,1300,6500

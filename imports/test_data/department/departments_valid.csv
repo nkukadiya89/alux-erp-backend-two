@@ -1,0 +1,27 @@
+Department Code,Department Name,Department Type,Plant Name,Cost Center Code,Parent Department Code,Status
+DEPT-001,Production Department,PRODUCTION,Mumbai Extrusion Plant,CC-001,,Active
+DEPT-002,Quality Assurance,QA,Mumbai Extrusion Plant,CC-002,,Active
+DEPT-003,Store Department,STORE,Mumbai Extrusion Plant,CC-003,,Active
+DEPT-004,Purchase Department,PURCHASE,Mumbai Extrusion Plant,CC-004,,Active
+DEPT-005,Maintenance Department,MAINTENANCE,Mumbai Extrusion Plant,CC-005,,Active
+DEPT-006,Finance Department,FINANCE,Mumbai Extrusion Plant,CC-006,,Active
+DEPT-007,Admin Department,ADMIN,Mumbai Extrusion Plant,CC-007,,Active
+DEPT-008,Production Line 1,PRODUCTION,Delhi Assembly Unit,CC-008,DEPT-001,Active
+DEPT-009,Production Line 2,PRODUCTION,Delhi Assembly Unit,CC-009,DEPT-001,Active
+DEPT-010,Quality Control Lab,QA,Delhi Assembly Unit,CC-010,DEPT-002,Active
+DEPT-011,Raw Material Store,STORE,Delhi Assembly Unit,CC-011,DEPT-003,Active
+DEPT-012,Finished Goods Store,STORE,Delhi Assembly Unit,CC-012,DEPT-003,Active
+DEPT-013,Procurement Team,PURCHASE,Bangalore Warehouse,CC-013,,Active
+DEPT-014,Equipment Maintenance,MAINTENANCE,Bangalore Warehouse,CC-014,DEPT-005,Active
+DEPT-015,Accounts Payable,FINANCE,Bangalore Warehouse,CC-015,DEPT-006,Active
+DEPT-016,Accounts Receivable,FINANCE,Bangalore Warehouse,CC-016,DEPT-006,Active
+DEPT-017,HR Department,ADMIN,Bangalore Warehouse,CC-017,DEPT-007,Active
+DEPT-018,IT Support,ADMIN,Bangalore Warehouse,CC-018,DEPT-007,Active
+DEPT-019,Regional QA,QA,Chennai Site Office,CC-019,,Active
+DEPT-020,Regional Store,STORE,Chennai Site Office,CC-020,,Active
+DEPT-021,Regional Purchase,PURCHASE,Chennai Site Office,CC-021,,Active
+DEPT-022,Regional Maintenance,MAINTENANCE,Chennai Site Office,CC-022,,Active
+DEPT-023,Production Department,PRODUCTION,Hyderabad Extrusion,CC-023,,Active
+DEPT-024,Quality Assurance,QA,Hyderabad Extrusion,CC-024,,Active
+DEPT-025,Store Department,STORE,Hyderabad Extrusion,CC-025,,Active
+

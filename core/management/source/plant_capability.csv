@@ -1,0 +1,8 @@
+code,name,description,status,is_deleted
+PURCHASE,Purchase Management,Can create and manage purchase orders,Active,False
+DISPATCH,Dispatch,Can dispatch goods and manage shipments,Active,False
+INVENTORY,Inventory,Can manage inventory stock and movements,Active,False
+QUALITY,Quality Control,Can perform quality control operations,Active,False
+PRODUCTION,Production,Can create and manage production orders,Active,False
+CONSUMPTION,Material Consumption,Can record material consumption,Active,False
+FINANCE,Financial Transactions,Can process financial transactions,Active,False

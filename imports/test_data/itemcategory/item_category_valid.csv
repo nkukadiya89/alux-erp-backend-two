@@ -1,0 +1,11 @@
+Category Code,Category Name,Allowed Item Type,Description,Is Active
+TEST-001,Test Raw Material Category,CONSUMABLE,Primary raw material for testing,TRUE
+TEST-002,Test Consumable Category,CONSUMABLE,Consumable material for testing,TRUE
+TEST-003,Test Semi-Finished Category,CONSUMABLE,Semi-finished goods for testing,TRUE
+TEST-004,Test Finished Goods Category,Scrap,Finished goods for testing,TRUE
+TEST-005,Test Spare Parts Category,CONSUMABLE,Spare parts for testing,TRUE
+TEST-006,Test Scrap Category,Scrap,Scrap material for testing,TRUE
+TEST-007,Test Tooling Category,CONSUMABLE,Tooling equipment for testing,TRUE
+TEST-008,Test Raw Material 2,CONSUMABLE,Another raw material category,TRUE
+TEST-009,Test Consumable 2,Scrap,Another consumable category,FALSE
+TEST-010,Test Semi-Finished 2,CONSUMABLE,Another semi-finished category,TRUE

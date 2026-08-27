@@ -1,0 +1,17 @@
+material_type_code,furnace_type,min_recovery,max_recovery,standard_loss,condition,is_active
+BAIL,Gas,92.0,96.0,4.0,,True
+BAIL,Electric,94.0,98.0,3.0,,True
+BAIL,Induction,95.0,98.0,2.5,,True
+SCRP,Gas,85.0,92.0,8.0,,True
+SCRP,Electric,88.0,94.0,6.0,,True
+SCRP,Induction,90.0,95.0,5.0,,True
+MIXS,Gas,82.0,90.0,10.0,,True
+MIXS,Electric,85.0,92.0,8.0,,True
+ING,Gas,96.0,99.0,2.0,,True
+ING,Electric,97.0,99.0,1.5,,True
+ING,Induction,97.0,99.0,1.5,,True
+CONT,Gas,80.0,88.0,12.0,,True
+CONT,Electric,82.0,90.0,10.0,,True
+BAIL,Gas,88.0,92.0,8.0,First Heat of Day,True
+SCRP,Gas,85.0,90.0,10.0,Furnace Cleaning Heat,True
+MIXS,Gas,80.0,88.0,12.0,Trial Heat,True

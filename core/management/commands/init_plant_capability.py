@@ -1,0 +1,95 @@
+import csv
+import os
+
+from django.conf import settings
+from django.core.management.base import BaseCommand
+
+from common.models import PlantCapability
+
+
+class Command(BaseCommand):
+    help = "Initialize master data for PlantCapability from CSV file"
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--csv-file",
+            type=str,
+            default="core/management/source/plant_capability.csv",
+            help="Path to CSV file (relative to project root)",
+        )
+
+    def handle(self, *args, **options):
+        csv_file_path = options["csv_file"]
+
+        # Construct the full path
+        if not os.path.isabs(csv_file_path):
+            csv_file_path = os.path.join(settings.BASE_DIR, csv_file_path)
+
+        if not os.path.exists(csv_file_path):
+            self.stdout.write(self.style.ERROR(f"CSV file not found: {csv_file_path}"))
+            return
+
+        try:
+            with open(csv_file_path, "r", encoding="utf-8") as file:
+                reader = csv.DictReader(file)
+
+                created_count = 0
+                existing_count = 0
+
+                for row in reader:
+                    code = row.get("code", "").strip().upper()
+                    name = row.get("name", "").strip()
+
+                    if not code or not name:
+                        self.stdout.write(
+                            self.style.WARNING(
+                                f"Skipping PlantCapability row with empty code or name: {row}"
+                            )
+                        )
+                        continue
+
+                    # Get status (default to Active)
+                    status = row.get("status", "Active").strip()
+                    if status not in ["Active", "Inactive"]:
+                        status = "Active"
+
+                    # Get description
+                    description = row.get("description", "").strip()
+
+                    # Create or get existing plant capability
+                    obj, created = PlantCapability.objects.get_or_create(
+                        code=code,
+                        defaults={
+                            "name": name,
+                            "description": description if description else None,
+                            "status": status,
+                            "is_deleted": False,
+                        },
+                    )
+
+                    if created:
+                        created_count += 1
+                        self.stdout.write(
+                            self.style.SUCCESS(
+                                f"Created PlantCapability: {code} - {name}"
+                            )
+                        )
+                    else:
+                        existing_count += 1
+                        self.stdout.write(
+                            self.style.WARNING(
+                                f"PlantCapability already exists: {code} - {name}"
+                            )
+                        )
+
+                # Summary
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f"\nPlant Capability data initialization complete!\n"
+                        f"Created: {created_count} new records\n"
+                        f"Existing: {existing_count} records already present"
+                    )
+                )
+
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"Error reading CSV file: {str(e)}"))

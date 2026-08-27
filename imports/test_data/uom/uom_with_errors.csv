@@ -1,0 +1,8 @@
+UOM Code,UOM Name,UOM Type,Decimal Allowed,Is Active
+KG,Kilogram,WEIGHT,True,True
+,Invalid Code,WEIGHT,True,True
+TOOLONGCODE,Too Long Code,WEIGHT,True,True
+PCS,Pieces,INVALID_TYPE,False,True
+DUPLICATE,Duplicate Test,WEIGHT,True,True
+DUPLICATE,Duplicate Test 2,WEIGHT,True,True
+VALID,Valid UOM,LENGTH,True,True

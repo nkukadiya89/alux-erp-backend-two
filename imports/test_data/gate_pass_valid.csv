@@ -1,0 +1,4 @@
+Gate Pass No,Date,Type,Party Name,Vehicle No,Remarks
+GP-2025-0001,2025-01-01,RETURNABLE,ABC Suppliers,GJ01AB1234,Test valid returnable gate pass
+GP-2025-0002,2025-01-02,NON_RETURNABLE,XYZ Traders,GJ01AB5678,One-time non-returnable material
+

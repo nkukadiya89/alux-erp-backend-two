@@ -1,0 +1,32 @@
+---
+description: Minimal prompt to integrate Recovery Standard APIs in React+Antd. Copy Furnace module pattern. Low token.
+globs: 
+---
+
+# Recovery Standard – React + Antd integration (mirror Furnace)
+
+**Base:** `GET/POST /api/v1/recovery-standard/` · `GET/PUT/PATCH/DELETE /api/v1/recovery-standard/:id/`  
+**Auth:** `Authorization: Bearer <token>`  
+**Response:** `{ success: boolean, data?: T, message?: string }` · List: `data.results`, `data.count` (or pagination in `data`).
+
+**Endpoints (mirror Furnace):**
+- List: `GET .../recovery-standard/?page=&pagesize=&search=&ordering=&furnace_type=&material_type=&status=`
+- Create: `POST` body `{ furnace_type, material_type, min_recovery, max_recovery, standard_loss, effective_from?, status, remarks? }`
+- Detail: `GET .../recovery-standard/:id/`
+- Update: `PUT`/`PATCH .../recovery-standard/:id/`
+- Delete: `DELETE .../recovery-standard/:id/` (soft archive)
+- Change status: `POST .../recovery-standard/:id/change-status/` body `{ status: "Active"|"Inactive" }`
+- Dropdown: `GET .../recovery-standard/dropdown/` → `data: [{ id, furnace_type, material_type }]`
+- Bulk archive: `POST .../recovery-standard/bulk-archive/` body `{ ids: number[] }`
+- Bulk restore: `POST .../recovery-standard/bulk-restore/` body `{ ids: number[] }`
+- Bulk import: `POST .../recovery-standard/bulk-import/` formData `file`, `dry_run?`
+- Import logs: `GET .../recovery-standard/import-logs/?page=&pagesize=`
+- Import errors: `GET .../recovery-standard/:import_log_id/import-errors/`
+- Error report download: `GET .../recovery-standard/:import_log_id/error-report/download/`
+- Archived list: `GET .../recovery-standard/archived/?page=&pagesize=&search=&ordering=`
+- Archived detail: `GET .../recovery-standard/:id/archived/`
+- Archive viewset (read-only): `GET .../recovery-standard-archive/`, `GET .../recovery-standard-archive/:id/`
+
+**Payload fields:** `furnace_type` (id), `material_type` (id), `min_recovery`, `max_recovery`, `standard_loss` (0–100), `effective_from` (YYYY-MM-DD), `status`, `remarks`. Nested: `furnace_type_info`, `material_type_info` (id, name/code).
+
+**Frontend (React+Antd):** Same structure as Furnace – list (Table + filters + search), add/edit (Form + FurnaceType/MaterialType dropdowns from `/api/v1/furnace-type/`, `/api/v1/material-types/`), dropdown, bulk archive/restore, change-status, bulk import (Upload + import-logs + import-errors), archived tab/page. Reuse Furnace services/hooks/columns pattern; swap endpoint and field names.

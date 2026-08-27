@@ -1,0 +1,11 @@
+name,is_active
+Solid,True
+Hollow,True
+Tube,True
+Flat,True
+Angle,True
+Channel,True
+Round,True
+Square,True
+Rectangle,True
+T-Section,True

@@ -1,0 +1,11 @@
+Plant Code,Plant Name,Plant Type,Status,Address Line 1,Address Line 2,City,State,Country,Postal Code,Phone Number,Email,Plant Head Name
+PLANT-001,Mumbai Extrusion Plant,EXTRUSION,Active,123 Industrial Area,Block A,Mumbai,Maharashtra,India,400001,9876543210,plant001@example.com,John Doe
+PLANT-002,Delhi Assembly Unit,FABRICATION,Active,456 Manufacturing Zone,Unit 5,Delhi,Delhi,India,110001,9876543211,plant002@example.com,Jane Smith
+PLANT-003,Bangalore Warehouse,WAREHOUSE,Active,789 Logistics Park,Warehouse 3,Bangalore,Karnataka,India,560001,9876543212,plant003@example.com,Bob Johnson
+PLANT-004,Chennai Site Office,SITE,Active,321 Construction Site,Site Office,Chennai,Tamil Nadu,India,600001,9876543213,plant004@example.com,Alice Williams
+PLANT-005,Pune Corporate Office,OFFICE,Active,654 Business Park,Floor 2,Pune,Maharashtra,India,411001,9876543214,plant005@example.com,Charlie Brown
+PLANT-006,Hyderabad Extrusion,EXTRUSION,Active,987 Tech Park,Building B,Hyderabad,Telangana,India,500001,9876543215,plant006@example.com,Diana Prince
+PLANT-007,Kolkata Assembly,FABRICATION,Active,147 Industrial Estate,Unit 7,Kolkata,West Bengal,India,700001,9876543216,plant007@example.com,Edward Norton
+PLANT-008,Ahmedabad Warehouse,WAREHOUSE,Active,258 Storage Complex,Warehouse 2,Ahmedabad,Gujarat,India,380001,9876543217,plant008@example.com,Fiona Apple
+PLANT-009,Surat Site Office,SITE,Active,369 Project Site,Main Office,Surat,Gujarat,India,395001,9876543218,plant009@example.com,George Lucas
+PLANT-010,Jaipur Office,OFFICE,Active,741 Commercial Complex,Suite 101,Jaipur,Rajasthan,India,302001,9876543219,plant010@example.com,Helen Keller

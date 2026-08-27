@@ -1,0 +1,8 @@
+code,name,process_stage,requires_sampling,requires_lab_test,plant_code,description,is_active
+GRN-VIS,GRN Visual Inspection,GRN,False,False,,Visual inspection at goods receipt,True
+GRN-DIM,GRN Dimensional Check,GRN,True,False,,Dimensional verification at GRN,True
+PROD-FIRST,First Piece Inspection,PRODUCTION,True,False,,First piece approval in production,True
+PROD-SAMPLE,Production Sampling,PRODUCTION,True,True,,Random sampling during production,True
+DISP-FINAL,Final Dispatch Inspection,DISPATCH,True,False,,Pre-dispatch quality check,True
+STOCK-REV,Stock Revision Check,STOCK,False,False,,Periodic stock quality review,True
+RET-ANAL,Return Material Analysis,RETURN,False,True,,Analysis of returned materials,True

@@ -1,0 +1,43 @@
+department_code,department_name,department_type,plant_code,cost_center_code,parent_department_code,status,is_archived
+PROD001,Production Department,PRODUCTION,PL-EX-001,CC001,,Active,false
+PROD002,Secondary Production,PRODUCTION,PL-WH-001,CC002,,Active,false
+PROD003,Extrusion Line 1,PRODUCTION,PL-EX-001,CC003,PROD001,Active,false
+PROD004,Extrusion Line 2,PRODUCTION,PL-EX-001,CC004,PROD001,Active,false
+PROD005,Finishing Department,PRODUCTION,PL-WH-001,CC005,PROD002,Active,false
+STORE001,Main Store,STORE,PL-WH-001,CC006,,Active,false
+STORE002,Raw Material Store,STORE,PL-EX-001,CC007,STORE001,Active,false
+STORE003,Finished Goods Store,STORE,PL-EX-001,CC008,STORE001,Active,false
+STORE004,Regional Store North,STORE,PL-EX-001,CC009,,Active,false
+STORE005,Tool Store,STORE,PL-EX-001,CC010,STORE002,Active,false
+QA001,Quality Control,QA,PL-WH-001,CC011,,Active,false
+QA002,Incoming Inspection,QA,PL-EX-001,CC012,QA001,Active,false
+QA003,Final Inspection,QA,PL-WH-001,CC013,QA001,Active,false
+QA004,Lab Testing,QA,PL-EX-001,CC014,QA001,Active,false
+PURCH001,Purchase Department,PURCHASE,PL-EX-001,CC015,,Active,false
+PURCH002,Vendor Management,PURCHASE,PL-EX-001,CC016,PURCH001,Active,false
+PURCH003,Strategic Sourcing,PURCHASE,PL-EX-001,CC017,PURCH001,Active,false
+MAINT001,Maintenance Department,MAINTENANCE,PL-WH-001,CC018,,Active,false
+MAINT002,Preventive Maintenance,MAINTENANCE,PL-EX-001,CC019,MAINT001,Active,false
+MAINT003,Breakdown Maintenance,MAINTENANCE,PL-WH-001,CC020,MAINT001,Active,false
+MAINT004,Tool Maintenance,MAINTENANCE,PL-WH-001,CC021,MAINT001,Active,false
+FIN001,Finance Department,FINANCE,PL-EX-001,CC022,,Active,false
+FIN002,Accounts Payable,FINANCE,PL-EX-001,CC023,FIN001,Active,false
+FIN003,Accounts Receivable,FINANCE,PL-EX-001,CC024,FIN001,Active,false
+FIN004,Cost Accounting,FINANCE,PL-EX-001,CC025,FIN001,Active,false
+FIN005,Treasury,FINANCE,PL-EX-001,CC026,FIN001,Active,false
+ADMIN001,Administration,ADMIN,PL-EX-001,CC027,,Active,false
+ADMIN002,Human Resources,ADMIN,PL-EX-001,CC028,ADMIN001,Active,false
+ADMIN003,IT Department,ADMIN,PL-EX-001,CC029,ADMIN001,Active,false
+ADMIN004,Security,ADMIN,PL-EX-001,CC030,ADMIN001,Active,false
+ADMIN005,Facility Management,ADMIN,PL-EX-001,CC031,ADMIN001,Active,false
+PROD006,R&D Production,PRODUCTION,PL-EX-001,CC032,,Active,false
+STORE006,Research Store,STORE,PL-EX-001,CC033,,Active,false
+QA005,R&D Quality,QA,PL-EX-001,CC034,,Active,false
+DIST001,Distribution Operations,ADMIN,PL-WH-001,CC035,,Active,false
+DIST002,Logistics Planning,ADMIN,PL-WH-001,CC036,DIST001,Active,false
+DIST003,Dispatch Control,ADMIN,PL-WH-001,CC037,DIST001,Active,false
+STORE007,Distribution Store,STORE,PL-WH-001,CC038,,Active,false
+STORE008,Eastern Storage,STORE,PL-EX-001,CC039,,Active,false
+MAINT005,Eastern Maintenance,MAINTENANCE,PL-EX-001,CC040,,Active,false
+ADMIN006,Regional Admin East,ADMIN,PL-EX-001,CC041,,Active,false
+

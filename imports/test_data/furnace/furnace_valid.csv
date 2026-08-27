@@ -1,0 +1,3 @@
+Furnace Code,Furnace Name,Furnace Type,Status,Fuel Type,Furnace Capacity,Min Temperature,Max Temperature
+F001,Melting Furnace 1,Gas,Active,LPG,1000,500,1200
+F002,Melting Furnace 2,Induction,Active,Electricity,1500,500,1300

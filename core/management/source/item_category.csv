@@ -1,0 +1,21 @@
+category_code,category_name,allowed_item_type,description,is_active
+AL-INGOT,Aluminum Ingots,RAW,Primary aluminum ingots,TRUE
+AL-SCRAP,Aluminum Scrap,RAW,Internal and external scrap,TRUE
+AL-ALLOY,Alloying Elements,RAW,Magnesium Silicon Copper Zinc,TRUE
+FLUX,Flux & Refining Chemicals,CONSUMABLE,Melt cleaning chemicals,TRUE
+REFRACT,Refractory Materials,CONSUMABLE,Furnace lining materials,TRUE
+GAS,Industrial Gases,CONSUMABLE,Nitrogen Argon gases,TRUE
+LUBE,Lubricants & Oils,CONSUMABLE,Hydraulic and die lubricants,TRUE
+PACK,Packing Materials,CONSUMABLE,Straps films cartons,TRUE
+BILLET,Aluminum Billets,SEMI,Cast billets,TRUE
+WIP-MAT,WIP Materials,SEMI,Work in process stock,TRUE
+PROFILE,Extruded Profiles,FG,Finished extruded products,TRUE
+FAB-PART,Fabricated Parts,FG,Processed and machined profiles,TRUE
+DIE,Extrusion Dies,TOOLING,Extrusion tooling dies,TRUE
+DIE-ACC,Die Accessories,TOOLING,Backers rings accessories,TRUE
+MRO-MECH,Mechanical Spares,SPARE,Mechanical maintenance spares,TRUE
+MRO-ELEC,Electrical Spares,SPARE,Electrical maintenance spares,TRUE
+MRO-HYD,Hydraulic Spares,SPARE,Hydraulic system spares,TRUE
+SCRAP-PROC,Process Scrap,SCRAP,Extrusion and cutting scrap,TRUE
+SCRAP-DROSS,Dross & Skimmings,SCRAP,Furnace waste material,TRUE
+UTILITY,Utility Materials,CONSUMABLE,Utility and water treatment items,TRUE

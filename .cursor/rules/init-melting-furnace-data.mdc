@@ -1,0 +1,21 @@
+---
+description: Generate init commands + CSV for melting_furnace masters (aluminum extrusion). Use minimal tokens; follow existing init_*_data.py and core/management/source/*.csv patterns.
+globs: core/management/commands/init_*.py, core/management/source/*.csv, core/management/commands/init_data.py
+---
+
+# Init commands for melting furnace masters
+
+When asked to generate init commands for these modules, output **one management command** and **one CSV** per module. Copy pattern from `init_jobworktype_data.py` / `init_section_type_data.py` and `core/management/source/*.csv`. Add command to `init_data.py` `commands_sequence` in this order (respect dependencies):
+
+| # | Module | Model (melting_furnace) | CSV path | Example values (aluminum extrusion) |
+|---|--------|--------------------------|----------|--------------------------------------|
+| 1 | Fuel types | FuelType | fuel_type.csv | name: Natural Gas, LPG, Diesel, Heavy Fuel Oil, Electricity, Coal, Coke, Propane |
+| 2 | Furnace types | FurnaceType | furnace_type.csv | name: Reverberatory, Rotary, Crucible, Induction, Holding, Tilting |
+| 3 | Additive categories | AdditiveCategory | additive_category.csv | name: Grain Refiner, Modifier, Degasser, Alloying, Flux, Cover |
+| 4 | Additive masters | AdditiveMaster | additive_master.csv | additive_code, additive_name, category (FK name), unit (optional), standard_quantity, min_limit, max_limit, status, remarks. Run after additive_category. |
+| 5 | Furnaces | Furnace | furnace.csv | furnace_code, furnace_name, furnace_type (name), furnace_capacity, fuel_type (name), min_temperature, max_temperature, status, remark. Run after furnace_type + fuel_type. |
+| 6 | Recovery standards | RecoveryStandard | recovery_standard.csv | furnace_type (name), material_type, min_recovery, max_recovery, standard_loss, effective_from, status, remarks. Run after furnace_type. |
+
+**Command template (minimal):** `BaseCommand`; `--csv-file` default `core/management/source/<module>.csv`; optional `--reset` for simple name-only models; read CSV with `csv.DictReader`, `get_or_create` on unique field(s); print created/existing summary. For FKs (AdditiveMaster, Furnace, RecoveryStandard): resolve by name in same command or run dependencies first and use name in CSV.
+
+**CSV:** Header row = model fields (use FK target’s `name` in CSV; command resolves to ID). One row per seed value. No extra columns.
