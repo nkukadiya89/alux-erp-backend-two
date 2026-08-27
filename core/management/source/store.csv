@@ -1,0 +1,21 @@
+store_code,store_name,store_type,plant_code,allows_negative_stock,deleted
+ST001,Raw Material Store - Main,Raw Material Store,PL-WH-001,False,0
+ST002,Finished Goods Store - Main,Finished Goods Store,PL-WH-001,False,0
+ST003,Work In Progress Store,Work-in-Progress Store,PL-WH-001,False,0
+ST004,Scrap Store,Scrap Store,PL-WH-001,True,0
+ST005,Billet Store,Raw Material Store,PL-WH-001,False,0
+ST006,Raw Material Store - Secondary,Raw Material Store,PL-EX-001,False,0
+ST007,Finished Goods Store - Secondary,Finished Goods Store,PL-EX-001,False,0
+ST008,Central Warehouse - Raw,Raw Material Store,PL-WH-001,False,0
+ST009,Central Warehouse - FG,Finished Goods Store,PL-WH-001,False,0
+ST010,Central Warehouse - WIP,Work-in-Progress Store,PL-WH-001,True,0
+ST011,Regional Store - Raw Materials,Raw Material Store,PL-EX-001,False,0
+ST012,Regional Store - Finished Goods,Finished Goods Store,PL-EX-001,False,0
+ST013,Quality Control Sample Store,Work-in-Progress Store,PL-EX-001,True,0
+ST014,R&D Material Store,Raw Material Store,PL-EX-001,True,0
+ST015,Distribution Center - Ready Stock,Finished Goods Store,PL-WH-001,False,0
+ST016,Maintenance Spare Parts Store,Raw Material Store,PL-WH-001,False,0
+ST017,Maintenance Tools Store,Raw Material Store,PL-WH-001,True,0
+ST018,East Storage - Raw Materials,Raw Material Store,PL-EX-001,False,0
+ST019,East Storage - Finished Goods,Finished Goods Store,PL-EX-001,False,0
+ST020,East Storage - Scrap,Scrap Store,PL-EX-001,True,0

@@ -1,0 +1,9 @@
+Gate Pass No,Date,Type,Party Name,Vehicle No,Remarks
+GP-2025-0003,2025-01-03,RETURNABLE,Valid Party,GJ01AB9999,Valid row
+GP-2025-0003,2025-01-03,RETURNABLE,Duplicate Number,GJ01AB0001,Duplicate gate_pass_no in file (caught at DB/constraints)
+GP-2025-0004,2025-13-01,RETURNABLE,Invalid Date,GJ01AB0002,Invalid date format
+GP-2025-0005,2025-01-05,INVALID_TYPE,Invalid Type Party,GJ01AB0003,Invalid type choice
+,,RETURNABLE,Missing Required,GJ01AB0004,Missing gate_pass_no and date
+GP-2025-0006,2025-01-06,RETURNABLE,,GJ01AB0005,Missing party_name
+GP-2025-0007,2025-01-07,RETURNABLE,Short Vehicle,,Missing vehicle_no
+

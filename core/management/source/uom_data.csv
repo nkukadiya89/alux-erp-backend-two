@@ -1,0 +1,21 @@
+uom_code,uom_name,uom_type,decimal_allowed
+KG,Kilogram,WEIGHT,True
+MT,Metric Ton,WEIGHT,True
+PCS,Pieces,COUNT,False
+MTR,Meter,LENGTH,True
+MM,Millimeter,LENGTH,True
+CM,Centimeter,LENGTH,True
+LTR,Liter,VOLUME,True
+SQM,Square Meter,AREA,True
+CUM,Cubic Meter,VOLUME,True
+TON,Ton,WEIGHT,True
+GM,Gram,WEIGHT,True
+INCH,Inch,LENGTH,True
+FEET,Feet,LENGTH,True
+YRD,Yard,LENGTH,True
+GAL,Gallon,VOLUME,True
+SET,Set,COUNT,False
+BOX,Box,COUNT,False
+ROLL,Roll,COUNT,False
+BTL,Bottle,COUNT,False
+PKT,Packet,COUNT,False

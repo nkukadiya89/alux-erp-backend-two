@@ -1,0 +1,11 @@
+code,name,status,is_deleted
+HEAT_TREATMENT,Heat Treatment / Ageing Plant,Active,False
+MELTING_CASTING,Melting / Casting Plant,Active,False
+SITE,Project / Site,Active,False
+OFFICE,Corporate Office,Active,False
+FABRICATION,Fabrication / Assembly Plant,Active,False
+ANODIZING,Anodizing Plant 1,Active,False
+QUALITY_LAB,Quality Control / Testing Lab,Active,False
+EXTRUSION,Extrusion Plant,Active,False
+POWDER_COATING,Powder Coating Plant,Active,False
+WAREHOUSE,Warehouse / Dispatch Center,Active,False

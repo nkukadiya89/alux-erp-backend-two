@@ -1,0 +1,3 @@
+planttype,plant_code,plant_name,status,address_line_1,address_line_2,city,state,country,postal_code,phone_number,email,plant_head,deleted
+WAREHOUSE,PL-WH-001,Main Warehouse,Active,123 Storage Street,143 Storage Street,Ahmedabad,Gujarat,India,382014,8877445511,warehouse@company.com,,False
+EXTRUSION,PL-EX-001,Primary Extrusion Plant,Active,456 Industrial Avenue,501 Asalali Industrial,Ahmedabad,Gujarat,India,382015,9856214103,extrusion@company.com,,False

@@ -1,0 +1,16 @@
+customer_name,die_number,alloy_code,temper_name,conversion,remarks
+ABC Aluminum Works,DIE001,6063,T4,1.25,Standard conversion for round bar
+ABC Aluminum Works,DIE002,6063,T6,1.3,Peak aged round bar
+XYZ Extrusion Pvt Ltd,DIE003,6061,O,1.28,Custom conversion rate
+XYZ Extrusion Pvt Ltd,DIE004,6082,H14,1.2,Flat bar conversion
+PQR Industries,DIE005,6063,H34,1.35,Special customer rate
+PQR Industries,DIE006,7020,T5,1.22,Small diameter rod
+LMN Fabricators,DIE007,6063,H112,1.4,Heavy section conversion
+LMN Fabricators,DIE008,6061,T651,1.45,Premium customer rate
+ABC Aluminum Works,DIE009,6082,H32,1.18,Standard flat section
+XYZ Extrusion Pvt Ltd,DIE010,6063,T6511,1.32,Medium round bar
+PQR Industries,DIE001,6061,T4,1.5,Large flat section
+LMN Fabricators,DIE002,6082,T6,1.38,Large round bar
+ABC Aluminum Works,DIE003,1050,O,1.16,Small flat bar
+XYZ Extrusion Pvt Ltd,DIE004,6063,H14,1.24,Standard round section
+PQR Industries,DIE005,3003,H34,1.42,Wide flat section

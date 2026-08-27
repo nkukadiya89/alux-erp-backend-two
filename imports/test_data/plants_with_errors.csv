@@ -1,0 +1,11 @@
+Plant Code,Plant Name,Plant Type,Status,Address Line 1,Address Line 2,City,State,Country,Postal Code,Phone Number,Email,Plant Head Name
+PLANT-101,Valid Plant 1,EXTRUSION,Active,123 Test Street,Suite 1,Mumbai,Maharashtra,India,400001,9876543210,valid1@example.com,Test User 1
+PLANT-101,Duplicate Code,FABRICATION,Active,456 Test Avenue,Suite 2,Delhi,Delhi,India,110001,9876543211,valid2@example.com,Test User 2
+PLANT-102,Invalid Email Plant,EXTRUSION,Active,789 Test Road,,Bangalore,Karnataka,India,560001,9876543212,invalid-email,Test User 3
+PLANT-103,Invalid Phone,WAREHOUSE,Active,321 Test Lane,Unit 5,Chennai,Tamil Nadu,India,600001,12345,valid3@example.com,Test User 4
+PLANT-104,Invalid Plant Type,INVALID_TYPE,Active,654 Test Drive,Floor 2,Pune,Maharashtra,India,411001,9876543214,valid4@example.com,Test User 5
+PLANT-105,Missing Required Field,EXTRUSION,Active,,Suite 3,Hyderabad,Telangana,India,500001,9876543215,valid5@example.com,Test User 6
+PLANT-106,Valid Plant 2,WAREHOUSE,Active,147 Test Boulevard,Warehouse 1,Kolkata,West Bengal,India,700001,9876543216,valid6@example.com,Test User 7
+PLANT-107,Invalid Status,EXTRUSION,InvalidStatus,258 Test Circle,Building A,Ahmedabad,Gujarat,India,380001,9876543217,valid7@example.com,Test User 8
+PLANT-108,Valid Plant 3,SITE,Active,369 Test Square,Main Office,Surat,Gujarat,India,395001,9876543218,valid8@example.com,Test User 9
+PLANT-109,Short Phone,OFFICE,Active,741 Test Plaza,Suite 201,Jaipur,Rajasthan,India,302001,123,valid9@example.com,Test User 10
