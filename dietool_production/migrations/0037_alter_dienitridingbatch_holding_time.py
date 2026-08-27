@@ -10,6 +10,21 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunSQL(
+            sql="""
+                ALTER TABLE dietool_production_dienitridingbatch
+                ALTER COLUMN holding_time DROP DEFAULT;
+
+                ALTER TABLE dietool_production_dienitridingbatch
+                ALTER COLUMN holding_time TYPE timestamp with time zone
+                USING NULL;
+            """,
+            reverse_sql="""
+                ALTER TABLE dietool_production_dienitridingbatch
+                ALTER COLUMN holding_time TYPE numeric
+                USING NULL;
+            """,
+        ),
         migrations.AlterField(
             model_name='dienitridingbatch',
             name='holding_time',
