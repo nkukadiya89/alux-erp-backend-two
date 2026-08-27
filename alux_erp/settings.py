@@ -106,6 +106,8 @@ INSTALLED_APPS = [
     "online_inspection",
     "dimension_inspection",
     "mechanical_test",
+    "jobwork_invoice",
+    "return_qc",
     "test_certificate",
     "dietool_production",
     "material_indent",

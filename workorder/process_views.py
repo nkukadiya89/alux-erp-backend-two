@@ -89,6 +89,38 @@ class WorkOrderProcessTrackingViewSet(BaseModelViewSet, ArchiveMixin):
 
     def retrieve(self, request, *args, **kwargs):
         workorder = self.get_object()
+        # Re-sync stages from current Surface Finish / flags (in-house vs vendor rules).
+        for detail in workorder.workorder_detail_workorder.filter(deleted=False):
+            ensure_item_process_track(detail, user=request.user)
+            # Sync Packed / Dispatched from live qty vs WO order + tolerance
+            try:
+                from utils.packing_tolerance import is_quantity_fulfilled
+
+                detail.refresh_from_db()
+                packed_pcs = (detail.packed_pieces or 0) + (detail.dispatched_pieces or 0)
+                packed_wt = (detail.packed_weight or 0) + (detail.dispatched_weight or 0)
+                if is_quantity_fulfilled(packed_pcs, packed_wt, detail):
+                    advance_process(
+                        workorder_detail=detail,
+                        stage="PACKED",
+                        user=request.user,
+                        remarks="Synced from packed qty vs WO tolerance",
+                    )
+                if is_quantity_fulfilled(
+                    detail.dispatched_pieces or 0,
+                    detail.dispatched_weight or 0,
+                    detail,
+                ):
+                    advance_process(
+                        workorder_detail=detail,
+                        stage="DISPATCHED",
+                        user=request.user,
+                        remarks="Synced from dispatched qty vs WO tolerance",
+                    )
+            except Exception:
+                pass
+
+
         tracks = (
             WorkOrderProcessTrack.objects.filter(
                 workorder=workorder, deleted=False, is_active=True
@@ -141,9 +173,10 @@ class WorkOrderProcessTrackingViewSet(BaseModelViewSet, ArchiveMixin):
                         "After Planning → Production → Online Inspection → "
                         "Dimension Inspection: if Ageing Cycle exists for Alloy+Temper, "
                         "Ageing then Mechanical Test; otherwise Mechanical Test directly "
-                        "after Dimension Inspection. Then if Surface Finish includes "
-                        "Engineering / Surface treatment / Laser marking / Thermal Break, "
-                        "Jobwork stages appear, then Sent to Third Party Vendor → "
+                        "after Dimension Inspection. Then jobwork stages follow Surface Finish: "
+                        "Engineering → Cutting can be in-house (no vendor steps). "
+                        "Machining / Surface treatment (Anodising etc.) / Laser / Thermal / "
+                        "Out Source use vendor path: Sent to Third Party Vendor → "
                         "Jobwork Invoice Linked → Return QC → Packing → Dispatch. "
                         "Mill Finish skips jobwork and uses Final QC before packing."
                     ),

@@ -184,20 +184,17 @@ class BundleInwardViewSet(BaseModelViewSet, ArchiveMixin):
                     - total_dispatched_pieces
                 )
 
-                workorder_detail.save()
+                # Fulfillment = order qty met; tolerance only caps max allowed pack qty.
+                from utils.packing_tolerance import is_quantity_fulfilled
 
-                allowed_max_weight = workorder_detail.max_weight or 0
-                if workorder_detail.die_over_weight:
-                    allowed_max_weight += allowed_max_weight * Decimal("0.10")
-
-                actual_total_weight = (
-                    BundleInward.objects.filter(
-                        workorder_detail=workorder_detail
-                    ).aggregate(Sum("weight"))["weight__sum"]
-                    or 0
+                cumulative_pcs = total_packed_pieces + total_dispatched_pieces
+                cumulative_weight = Decimal(str(total_packed_weight or 0)) + Decimal(
+                    str(total_dispatched_weight or 0)
                 )
 
-                if actual_total_weight >= allowed_max_weight:
+                if is_quantity_fulfilled(
+                    cumulative_pcs, cumulative_weight, workorder_detail
+                ):
                     workorder_detail.status = "Packed"
                     workorder_detail.save()
                     try:
@@ -207,10 +204,16 @@ class BundleInwardViewSet(BaseModelViewSet, ArchiveMixin):
                             workorder_detail=workorder_detail,
                             stage="PACKED",
                             user=request.user,
-                            remarks="Bundle inward fully packed",
+                            remarks="Bundle inward order qty fulfilled (WO tolerance applies to max allowed)",
                         )
                     except Exception:
                         pass
+                else:
+                    # Keep In-Process while packing is underway (first bundle already
+                    # advanced WAITING_FOR_PACKING above).
+                    if workorder_detail.status != "Packed":
+                        workorder_detail.status = "In-Process"
+                    workorder_detail.save()
 
                 all_details_packed = (
                     not WorkOrderDetail.objects.filter(workorder_id=workorder_id)

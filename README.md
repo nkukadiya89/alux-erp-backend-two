@@ -2,11 +2,14 @@
 
 Django REST API for the **Alux Aluminum Extrusion ERP**.
 
-Project package: `alux_erp`  
-API prefix: `/api/v1/`  
-Auth: JWT (`/get-token/`, `/refresh-token/`)
+| Item | Value |
+|------|-------|
+| Folder | `alux-erp-backend-two` |
+| Project package | `alux_erp` |
+| API prefix | `/api/v1/` |
+| Auth | JWT — `POST /get-token/`, `POST /refresh-token/` |
 
-For full monorepo architecture, domain modules, and API contracts, see the root [README.md](../README.md).
+For full monorepo architecture, domain modules, API contracts, and end-to-end runbooks, see the root [README.md](../README.md).
 
 ---
 
@@ -15,7 +18,7 @@ For full monorepo architecture, domain modules, and API contracts, see the root 
 - Django 5.1.1 + Django REST Framework 3.15
 - PostgreSQL + Redis + Celery 5.4
 - SimpleJWT, django-filter, django-axes, simple-history, cors-headers
-- AWS S3 (boto3), Excel/PDF tooling
+- AWS S3 (boto3), Excel/PDF tooling (openpyxl, reportlab, xhtml2pdf, …)
 
 ---
 
@@ -31,7 +34,7 @@ For full monorepo architecture, domain modules, and API contracts, see the root 
 ## Setup
 
 ```bash
-cd alux-erp-backend-new
+cd alux-erp-backend-two
 ```
 
 ### 1. Create and activate virtualenv
@@ -46,7 +49,7 @@ python -m venv env
 **macOS / Linux:**
 
 ```bash
-python -m venv env
+python3 -m venv env
 source env/bin/activate
 ```
 
@@ -101,10 +104,16 @@ python manage.py migrate
 
 ```bash
 python manage.py init_data
-# or targeted commands, e.g.:
+```
+
+Targeted examples:
+
+```bash
 python manage.py init_plant_data
 python manage.py init_uom_data
 python manage.py init_alloy_data
+python manage.py init_die_data
+python manage.py init_furnace_data
 ```
 
 CSV sources: `core/management/source/`
@@ -115,8 +124,10 @@ CSV sources: `core/management/source/`
 python manage.py runserver
 ```
 
-API: http://127.0.0.1:8000  
-Admin: http://127.0.0.1:8000/admin/
+| URL | Purpose |
+|-----|---------|
+| http://127.0.0.1:8000 | API root |
+| http://127.0.0.1:8000/admin/ | Django admin |
 
 ### 7. Celery (separate terminals)
 
@@ -139,8 +150,6 @@ Content-Type: application/json
 }
 ```
 
-Use returned access token:
-
 ```http
 Authorization: Bearer <access_token>
 ```
@@ -153,7 +162,7 @@ Authorization: Bearer <access_token>
 |-------|----------|
 | Settings / Celery | `alux_erp/` |
 | Aggregated routers | `alux_erp/routers.py` → `/api/v1/` |
-| Shared models / archive | `common/` (`BaseModel`, `ArchiveMixin`) |
+| Shared models / archive | `common/` (`BaseModel`, `ArchiveMixin`, `BaseModelViewSet`) |
 | Company settings base | `settings/models.py` (`BaseModule`) |
 | Utilities | `utils/` (pagination, errors, S3, mail, Excel, PDF, activity log) |
 | Custom user | `user/` (email login) |
@@ -204,4 +213,4 @@ autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in
 
 - Monorepo docs: [../README.md](../README.md)
 - Imports: [imports/README.md](imports/README.md)
-- Frontend: [../alux-erp-frontend-new/README.md](../alux-erp-frontend-new/README.md)
+- Frontend: [../alux-erp-frontend-new-two/README.md](../alux-erp-frontend-new-two/README.md)

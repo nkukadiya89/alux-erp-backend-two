@@ -65,6 +65,48 @@ def generate_failure_no():
 
     return f"{prefix}{new_number:04d}"
 
+def generate_return_qc_no():
+    from return_qc.models import ReturnQC
+
+    fy = get_financial_year()
+    prefix = f"RQC/{fy}/"
+
+    last_doc = (
+        ReturnQC.objects.filter(inspection_no__startswith=prefix)
+        .order_by("-inspection_no")
+        .first()
+    )
+
+    if last_doc:
+        last_number = int(last_doc.inspection_no.split("/")[-1])
+        new_number = last_number + 1
+    else:
+        new_number = 1
+
+    return f"{prefix}{new_number:04d}"
+
+
+def generate_jobwork_challan_no():
+    from jobwork_invoice.models import JobworkInvoice
+
+    fy = get_financial_year()
+    prefix = f"JW/{fy}/"
+
+    last_challan = (
+        JobworkInvoice.objects.filter(challan_no__startswith=prefix)
+        .order_by("-challan_no")
+        .first()
+    )
+
+    if last_challan:
+        last_number = int(last_challan.challan_no.split("/")[-1])
+        new_number = last_number + 1
+    else:
+        new_number = 1
+
+    return f"{prefix}{new_number:04d}"
+
+
 def generate_ageing_batch_no():
     from aging.models import AgeingBatch
 

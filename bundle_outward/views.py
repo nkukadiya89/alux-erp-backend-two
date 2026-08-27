@@ -1090,7 +1090,13 @@ class BundleOutwardViewSet(BaseModelViewSet, ArchiveMixin):
                 )
 
                 workorder_detail = WorkOrderDetail.objects.get(id=workorder_detail_id)
-                if total_dispatched_weight >= workorder_detail.max_weight:
+                from utils.packing_tolerance import is_quantity_fulfilled
+
+                if is_quantity_fulfilled(
+                    total_dispatched_pieces,
+                    total_dispatched_weight,
+                    workorder_detail,
+                ):
                     workorder_detail.status = "Dispatched"
                     workorder_detail.save()
                     try:
@@ -1100,7 +1106,7 @@ class BundleOutwardViewSet(BaseModelViewSet, ArchiveMixin):
                             workorder_detail=workorder_detail,
                             stage="DISPATCHED",
                             user=request.user,
-                            remarks="Bundle outward finalized",
+                            remarks="Bundle outward order qty fulfilled (WO tolerance applies to max allowed)",
                         )
                     except Exception:
                         pass

@@ -6,8 +6,12 @@ Does NOT overwrite legacy WorkOrder.status / WorkOrderDetail.status used by
 packing & dispatch — only maintains parallel `process_status` + checklist rows.
 
 Jobwork stages (Engineering / Surface treatment / Laser / Thermal Break) are
-inserted after Ageing when Surface Finish requires them, then:
-  Vendor Out → Jobwork Invoice Linked → Return QC → Packing → Dispatch.
+inserted after Mechanical Test when Surface Finish requires them.
+
+Vendor path (Sent to Third Party Vendor → Jobwork Invoice Linked → Return QC)
+is appended only when vendor jobwork applies (Out Source / machining /
+surface treatment / laser / thermal, etc.). Engineering → Cutting alone can
+remain in-house without the vendor trio.
 """
 
 from __future__ import annotations
@@ -53,10 +57,68 @@ def has_ageing_cycle_for(alloy_id, temper_id) -> bool:
     ).exists()
 
 
+# Processes that imply third-party vendor jobwork (unless only in-house cutting).
+_VENDOR_PROCESS_FLAGS = (
+    "machining",
+    "deburring",
+    "anodising",
+    "powder_coating",
+    "pvdf",
+)
+_VENDOR_SURFACE_FINISH_NAMES = {
+    "Surface treatment",
+    "Laser marking",
+    "Thermal Break",
+    "Out Source",
+}
+
+
+def requires_vendor_jobwork_path(workorder_detail, surface_finish_names=None) -> bool:
+    """
+    True when Vendor Out → Invoice Linked → Return QC should appear.
+
+    - Out Source flag / Out Source surface finish → vendor path
+    - Machining / Deburring / Anodising / Powder Coating / PVDF → vendor path
+    - Surface treatment / Laser marking / Thermal Break → vendor path
+    - Engineering → Cutting alone (no flags above) → in-house, no vendor path
+    """
+    if not workorder_detail:
+        return False
+
+    if bool(getattr(workorder_detail, "out_source", False)):
+        return True
+
+    names = surface_finish_names
+    if names is None:
+        names = set(
+            workorder_detail.surface_finish.values_list("name", flat=True)
+        )
+    else:
+        names = set(names)
+
+    if names & _VENDOR_SURFACE_FINISH_NAMES:
+        return True
+
+    for flag in _VENDOR_PROCESS_FLAGS:
+        if getattr(workorder_detail, flag, False):
+            return True
+
+    return False
+
+
 def resolve_jobwork_stage_codes(workorder_detail) -> list[str]:
     """
     Build ordered jobwork subprocess codes from Surface Finish + detail flags.
-    Empty list = Mill Finish / no vendor jobwork.
+
+    Empty list = Mill Finish / no jobwork.
+
+    Examples:
+    - Engineering + Cutting only → [JW_CUTTING]  (in-house)
+    - Engineering + Machining + Anodising →
+        [JW_MACHINING, JW_ANODISING, JW_VENDOR_OUT, JW_INVOICE_LINKED, JW_RETURN_QC]
+    - Cutting + Machining + Anodising →
+        [JW_CUTTING, JW_MACHINING, JW_ANODISING, JW_VENDOR_OUT, ...]
+    - Cutting with out_source=True → [JW_CUTTING, JW_VENDOR_OUT, ...]
     """
     if not workorder_detail:
         return []
@@ -92,7 +154,7 @@ def resolve_jobwork_stage_codes(workorder_detail) -> list[str]:
     if "Thermal Break" in names:
         stages.append("JW_THERMAL_BREAK")
 
-    if stages:
+    if stages and requires_vendor_jobwork_path(workorder_detail, names):
         stages.extend(
             ["JW_VENDOR_OUT", "JW_INVOICE_LINKED", "JW_RETURN_QC"]
         )
@@ -645,13 +707,33 @@ def backfill_existing_workorders(user=None, batch_size: int = 200):
 def _infer_stage_for_detail(detail) -> str:
     from planning.models import Planning
     from production.models import Production
+    from utils.packing_tolerance import is_quantity_fulfilled
 
     legacy = LEGACY_DETAIL_STATUS_TO_PROCESS.get(detail.status or "", "WO_CREATED")
 
-    if (detail.dispatched_weight or 0) > 0 or detail.status == "Dispatched":
+    dispatched_pcs = detail.dispatched_pieces or 0
+    dispatched_wt = detail.dispatched_weight or 0
+    packed_pcs = detail.packed_pieces or 0
+    packed_wt = detail.packed_weight or 0
+
+    if detail.status == "Dispatched" or is_quantity_fulfilled(
+        dispatched_pcs, dispatched_wt, detail
+    ):
         return "DISPATCHED"
-    if (detail.packed_weight or 0) > 0 or detail.status == "Packed":
+
+    # Packed = order qty fulfilled (packed + already dispatched counts toward fulfillment)
+    if detail.status == "Packed" or is_quantity_fulfilled(
+        packed_pcs + dispatched_pcs, packed_wt + dispatched_wt, detail
+    ):
         return "PACKED"
+
+    # Any packing started → In-Process packing stage (not full Packed yet)
+    if (
+        packed_pcs > 0
+        or packed_wt > 0
+        or detail.status == "In-Process"
+    ):
+        return "WAITING_FOR_PACKING"
 
     has_prod = Production.objects.filter(
         workorder_id=detail.workorder_id,
@@ -689,11 +771,23 @@ def _infer_stage_for_detail(detail) -> str:
 
 def _infer_stage_for_planning(planning, detail) -> str:
     from production.models import Production
+    from utils.packing_tolerance import is_quantity_fulfilled
 
-    if detail.status == "Dispatched" or (detail.dispatched_weight or 0) > 0:
+    dispatched_pcs = detail.dispatched_pieces or 0
+    dispatched_wt = detail.dispatched_weight or 0
+    packed_pcs = detail.packed_pieces or 0
+    packed_wt = detail.packed_weight or 0
+
+    if detail.status == "Dispatched" or is_quantity_fulfilled(
+        dispatched_pcs, dispatched_wt, detail
+    ):
         return "DISPATCHED"
-    if detail.status == "Packed" or (detail.packed_weight or 0) > 0:
+    if detail.status == "Packed" or is_quantity_fulfilled(
+        packed_pcs + dispatched_pcs, packed_wt + dispatched_wt, detail
+    ):
         return "PACKED"
+    if packed_pcs > 0 or packed_wt > 0 or detail.status == "In-Process":
+        return "WAITING_FOR_PACKING"
 
     prod = Production.objects.filter(
         planning_id=planning.id, deleted=False, status="SUBMITTED"

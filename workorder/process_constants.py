@@ -136,22 +136,43 @@ STAGE_COMPLETION_TRIGGERS = {
     "AGEING": "When Ageing batch includes this item’s production (only if Ageing Cycle exists for Alloy+Temper).",
     "MECHANICAL_TEST": "When Mechanical Test is recorded (after Ageing if required; otherwise directly after Dimension Inspection).",
     "JW_ENGINEERING": "When Surface Finish includes Engineering (placeholder until Cutting/Machining/Deburring are set).",
-    "JW_CUTTING": "When Engineering → Cutting is selected and jobwork for cutting is done / issued.",
-    "JW_MACHINING": "When Engineering → Machining is selected and jobwork for machining is done / issued.",
-    "JW_DEBURRING": "When Engineering → Deburring is selected and jobwork for deburring is done / issued.",
+    "JW_CUTTING": (
+        "When Engineering → Cutting is selected and cutting is completed "
+        "(in-house by default; vendor path only if Out Source / other vendor processes apply)."
+    ),
+    "JW_MACHINING": "When Engineering → Machining is selected and vendor jobwork for machining is done / issued.",
+    "JW_DEBURRING": "When Engineering → Deburring is selected and vendor jobwork for deburring is done / issued.",
     "JW_SURFACE_TREATMENT": "When Surface Finish includes Surface treatment (placeholder until Anodising/PC/PVDF are set).",
-    "JW_ANODISING": "When Surface treatment → Anodising is selected and jobwork is done / issued.",
-    "JW_POWDER_COATING": "When Surface treatment → Powder Coating is selected and jobwork is done / issued.",
-    "JW_PVDF": "When Surface treatment → PVDF is selected and jobwork is done / issued.",
-    "JW_LASER_MARKING": "When Surface Finish includes Laser marking and jobwork is done / issued.",
-    "JW_THERMAL_BREAK": "When Surface Finish includes Thermal Break and jobwork is done / issued.",
-    "JW_VENDOR_OUT": "When material is sent to the Third Party Vendor for selected jobwork.",
-    "JW_INVOICE_LINKED": "When Jobwork Invoice is linked for the vendor jobwork.",
-    "JW_RETURN_QC": "When material returns from vendor and factory Return QC is completed.",
-    "FINAL_QC": "In-house Final QC before packing (Mill Finish / no jobwork path).",
-    "WAITING_FOR_PACKING": "When Bundle Inward packing is started for the item.",
-    "PACKED": "When packed weight reaches allowed max weight on Bundle Inward.",
-    "DISPATCHED": "When Bundle Outward finalize reaches dispatched max weight.",
+    "JW_ANODISING": "When Surface treatment → Anodising is selected and vendor jobwork is done / issued.",
+    "JW_POWDER_COATING": "When Surface treatment → Powder Coating is selected and vendor jobwork is done / issued.",
+    "JW_PVDF": "When Surface treatment → PVDF is selected and vendor jobwork is done / issued.",
+    "JW_LASER_MARKING": "When Surface Finish includes Laser marking and vendor jobwork is done / issued.",
+    "JW_THERMAL_BREAK": "When Surface Finish includes Thermal Break and vendor jobwork is done / issued.",
+    "JW_VENDOR_OUT": (
+        "When material is sent to the Third Party Vendor "
+        "(only on vendor jobwork path — not for in-house Cutting alone)."
+    ),
+    "JW_INVOICE_LINKED": (
+        "When Jobwork Invoice / Challan is linked for vendor jobwork "
+        "(Machining, Anodising, etc.)."
+    ),
+    "JW_RETURN_QC": (
+        "When material returns from vendor and Return QC Inspection "
+        "is recorded in the Return QC module."
+    ),
+    "FINAL_QC": "In-house Final QC before packing (Mill Finish / no vendor jobwork path).",
+    "WAITING_FOR_PACKING": (
+        "When the first Bundle Inward is created for the item "
+        "(packing In-Process)."
+    ),
+    "PACKED": (
+        "When packed pieces/weight reach the Work Order order qty "
+        "(packing allowed up to order qty + WO Tolerance %)."
+    ),
+    "DISPATCHED": (
+        "When dispatched pieces/weight reach the Work Order order qty "
+        "(dispatch allowed up to order qty + WO Tolerance %)."
+    ),
     "CLOSED": "When Work Order is closed.",
 }
 

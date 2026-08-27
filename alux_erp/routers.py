@@ -53,6 +53,8 @@ from vendor.routers import vendor_routers
 from warehouse.routers import warehouse_routers
 from workorder.routers import workorder_routers
 from mechanical_test.routers import mechanical_test_routers
+from jobwork_invoice.routers import jobwork_invoice_routers
+from return_qc.routers import return_qc_routers
 from test_certificate.routers import test_certificate_router
 from dietool_production.routers import dieproductionlog_routers
 from material_indent.routers import material_indent_router
@@ -118,6 +120,8 @@ alux_router.registry.extend(scrap_generation_remelt_routers.registry)
 alux_router.registry.extend(online_inspection_router.registry)
 alux_router.registry.extend(dimension_inspection_routers.registry)
 alux_router.registry.extend(mechanical_test_routers.registry)
+alux_router.registry.extend(jobwork_invoice_routers.registry)
+alux_router.registry.extend(return_qc_routers.registry)
 alux_router.registry.extend(test_certificate_router.registry)
 alux_router.registry.extend(dieproductionlog_routers.registry)
 alux_router.registry.extend(material_indent_router.registry)
