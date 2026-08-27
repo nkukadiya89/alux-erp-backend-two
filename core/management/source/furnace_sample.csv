@@ -1,0 +1,9 @@
+furnace_code,furnace_name,furnace_type,furnace_capacity,fuel_type,min_temperature,max_temperature,status,remark
+F001,Main Induction Furnace 1,Induction Furnace,500.00,Electricity,600.00,1600.00,Active,Primary melting furnace for aluminum
+F002,Gas Melting Furnace A,Gas Furnace,300.00,Natural Gas,400.00,1200.00,Active,Secondary furnace for copper alloys
+F003,Electric Arc Furnace 1,Electric Arc Furnace,800.00,Electricity,1000.00,3000.00,Active,Heavy duty steel melting furnace
+F004,LPG Crucible Furnace,Crucible Furnace,100.00,LPG,300.00,900.00,Active,Small batch melting for precious metals
+F005,Heavy Oil Furnace B,Oil Furnace,450.00,Heavy Fuel Oil,500.00,1400.00,Inactive,Under maintenance - bearing replacement needed
+F006,Induction Furnace 2,Induction Furnace,600.00,Electricity,650.00,1650.00,Active,Backup furnace for continuous operations
+F007,Reverberatory Furnace 1,Reverberatory Furnace,750.00,Natural Gas,800.00,1800.00,Active,Large capacity aluminum melting
+F008,Diesel Backup Furnace,Gas Furnace,200.00,Diesel,350.00,1000.00,Active,Emergency backup for power outages

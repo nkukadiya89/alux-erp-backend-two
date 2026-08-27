@@ -1,0 +1,417 @@
+{
+	"info": {
+		"name": "Plant Bulk Import API",
+		"description": "Postman collection for testing Plant Master bulk import functionality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "plant-import"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login - Get JWT Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data && jsonData.data.access) {",
+									"        pm.environment.set(\"jwt_token\", jsonData.data.access);",
+									"        pm.environment.set(\"refresh_token\", jsonData.data.refresh);",
+									"        console.log(\"JWT Token saved to environment\");",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password@123\",\n    \"keep_me_logged_in\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/get-token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"get-token",
+								""
+							]
+						},
+						"description": "Login to get JWT access token. Update email and password in the request body."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plant Bulk Import",
+			"item": [
+				{
+					"name": "Bulk Import Plants (Valid Data)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.data && jsonData.data.import_log_id) {",
+									"        pm.environment.set(\"import_log_id\", jsonData.data.import_log_id);",
+									"        console.log(\"Import Log ID: \" + jsonData.data.import_log_id);",
+									"    }",
+									"    console.log(\"Success Count: \" + jsonData.data.success_count);",
+									"    console.log(\"Error Count: \" + jsonData.data.error_count);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "plants_valid.csv",
+									"description": "Upload the CSV or Excel file with plant data"
+								},
+								{
+									"key": "dry_run",
+									"value": "false",
+									"type": "text",
+									"description": "Set to true for validation only (no database save)"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/bulk-import/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"bulk-import",
+								""
+							]
+						},
+						"description": "Bulk import plants from CSV/Excel file. Use plants_valid.csv for testing with valid data."
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import Plants (Dry Run - Validate Only)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(\"Dry Run Results:\");",
+									"    console.log(\"Total Rows: \" + jsonData.data.total_rows);",
+									"    console.log(\"Would Import: \" + jsonData.data.success_count);",
+									"    console.log(\"Would Fail: \" + jsonData.data.error_count);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "plants_with_errors.csv",
+									"description": "Upload file to validate without saving"
+								},
+								{
+									"key": "dry_run",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/bulk-import/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"bulk-import",
+								""
+							]
+						},
+						"description": "Validate file without saving to database. Useful for testing before actual import."
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import Plants (With Errors)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 400) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.data && jsonData.data.import_log_id) {",
+									"        pm.environment.set(\"import_log_id\", jsonData.data.import_log_id);",
+									"        console.log(\"Import Log ID: \" + jsonData.data.import_log_id);",
+									"    }",
+									"    console.log(\"Success Count: \" + jsonData.data.success_count);",
+									"    console.log(\"Error Count: \" + jsonData.data.error_count);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "plants_with_errors.csv",
+									"description": "Upload file with intentional errors to test error handling"
+								},
+								{
+									"key": "dry_run",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/bulk-import/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"bulk-import",
+								""
+							]
+						},
+						"description": "Test error handling by importing a file with validation errors."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Import Logs & Errors",
+			"item": [
+				{
+					"name": "Get Import Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/import-logs/?page=1&page_size=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"import-logs",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "page_size",
+									"value": "20",
+									"description": "Number of records per page"
+								}
+							]
+						},
+						"description": "Get list of all import logs for Plant module. Use this to find import_log_id for viewing errors."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Import Errors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/{{import_log_id}}/import-errors/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"{{import_log_id}}",
+								"import-errors",
+								""
+							]
+						},
+						"description": "Get detailed error list for a specific import log. Replace {{import_log_id}} with actual import log ID from import logs response."
+					},
+					"response": []
+				},
+				{
+					"name": "Download Error Report (CSV)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/{{import_log_id}}/download-error-report/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								"{{import_log_id}}",
+								"download-error-report",
+								""
+							]
+						},
+						"description": "Download error report as CSV file. Replace {{import_log_id}} with actual import log ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plant CRUD (Reference)",
+			"item": [
+				{
+					"name": "List Plants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/plants/?page=1&pagesize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"plants",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pagesize",
+									"value": "10"
+								}
+							]
+						},
+						"description": "List all plants to verify imported data"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "import_log_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
+

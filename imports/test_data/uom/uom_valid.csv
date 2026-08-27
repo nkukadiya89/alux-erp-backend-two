@@ -1,0 +1,9 @@
+UOM Code,UOM Name,UOM Type,Decimal Allowed,Is Active
+KG,Kilogram,WEIGHT,True,True
+MT,Metric Ton,WEIGHT,True,True
+GM,Gram,WEIGHT,True,True
+PCS,Pieces,COUNT,False,True
+BOX,Box,COUNT,False,True
+M,Meter,LENGTH,True,True
+CM,Centimeter,LENGTH,True,True
+FT,Feet,LENGTH,True,True

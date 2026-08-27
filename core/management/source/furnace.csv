@@ -1,0 +1,7 @@
+furnace_code,furnace_name,furnace_type,furnace_capacity,fuel_type,min_temperature,max_temperature,status,remark
+F001,Reverberatory 1,Reverberatory,750.00,Natural Gas,800.00,1800.00,Active,Primary aluminum melting
+F002,Rotary Furnace A,Rotary,500.00,Natural Gas,700.00,1600.00,Active,Aluminum scrap melting
+F003,Crucible 1,Crucible,100.00,LPG,300.00,900.00,Active,Small batch holding
+F004,Induction 1,Induction,500.00,Electricity,600.00,1600.00,Active,Primary melting
+F005,Holding Furnace 1,Holding,300.00,Natural Gas,650.00,750.00,Active,Metal holding
+F006,Tilting Furnace A,Tilting,400.00,Diesel,400.00,1200.00,Active,Tap-out furnace

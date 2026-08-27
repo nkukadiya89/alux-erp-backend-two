@@ -1,0 +1,13 @@
+code,name,category_code
+EXT-SCRAP,Extrusion Scrap,
+CUT-SCRAP,Cutting Scrap,
+PRESS-SCRAP,Press Scrap,
+BILLET-END,Billet End,
+SKULL,Skull / Furnace Skull,
+DROSS,Dross,
+SLUDGE,Sludge,
+TURNINGS,Turnings,
+BURRS,Burrs,
+OFFCUT,Offcut,
+DEFECTIVE,Defective / Rejected,
+PACKAGING-SCRAP,Packaging Scrap,

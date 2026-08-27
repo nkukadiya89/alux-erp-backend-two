@@ -1,0 +1,67 @@
+===============================================================================
+UPDATED ITEM CSV FORMAT - Please Replace item_valid.csv with this content
+===============================================================================
+
+CSV Header (Single Line):
+Item Code,Item Name,Item Type,Category Code,Default UOM Code,Secondary UOM Code,Conversion Factor,Alloy Code,Heat Tracking,Reorder Level,Is Active,HSN Code,GST Rate,Base Unit,Net Weight,Purchase Rate,Sale Rate,Valuation Method,Minimum Stock,Maximum Stock,Reorder Qty,Making Time Minutes,Lead Time Days,BOM Required,Material Center,Batch Managed,GRN Required
+
+Sample Data Rows:
+ITEM001,Raw Aluminum Material,RAW,CAT001,KG,MT,1000.0000,AL6061,TRUE,100.00,TRUE,76011010,18.00,KG,1.500,250.00,300.00,FIFO,50.000,500.000,100.000,30,7,TRUE,MC001,TRUE,TRUE
+ITEM002,Steel Rod,RAW,CAT001,KG,,,ST001,TRUE,50.00,TRUE,72142010,18.00,KG,2.000,180.00,220.00,FIFO,25.000,250.000,50.000,20,5,FALSE,MC001,TRUE,TRUE
+ITEM003,Finished Product A,FG,CAT002,PCS,,,FP001,FALSE,200.00,TRUE,76041010,12.00,PCS,0.500,120.00,150.00,FIFO,100.000,1000.000,200.000,45,10,FALSE,MC002,TRUE,FALSE
+ITEM004,Semi Finished Component,SEMI,CAT003,KG,,,SF001,FALSE,75.00,TRUE,76042910,12.00,KG,1.200,150.00,180.00,FIFO,40.000,400.000,80.000,35,7,FALSE,MC002,TRUE,TRUE
+ITEM005,Consumable Material,CONSUMABLE,CAT004,KG,,,CM001,FALSE,150.00,TRUE,38249990,18.00,KG,0.100,50.00,60.00,FIFO,75.000,750.000,150.000,10,3,FALSE,MC003,FALSE,FALSE
+ITEM006,Raw Material B,RAW,CAT001,MT,,,AL7075,TRUE,25.00,TRUE,76012010,18.00,KG,1.800,280.00,350.00,FIFO,15.000,150.000,30.000,25,5,TRUE,MC001,TRUE,TRUE
+ITEM007,Finished Good B,FG,CAT002,PCS,,,FP002,FALSE,300.00,TRUE,76051110,12.00,PCS,0.750,200.00,250.00,FIFO,150.000,1500.000,300.000,50,15,FALSE,MC002,TRUE,FALSE
+ITEM008,Assembly Part,SEMI,CAT003,PCS,,,AP001,FALSE,100.00,TRUE,76043910,12.00,PCS,0.800,100.00,130.00,FIFO,50.000,500.000,100.000,40,8,FALSE,MC002,TRUE,TRUE
+
+===============================================================================
+INSTRUCTIONS TO UPDATE item_valid.csv:
+===============================================================================
+
+1. Close item_valid.csv if it's currently open
+2. Replace the entire content with the header and data rows above
+3. Save the file
+
+===============================================================================
+PREREQUISITES:
+===============================================================================
+
+Before importing, ensure these records exist in your database:
+
+1. ItemType records:
+   - RAW
+   - CONSUMABLE
+   - SEMI
+   - FG
+
+2. ItemCategory records:
+   - CAT001, CAT002, CAT003, CAT004
+
+3. UOM records:
+   - KG, MT, PCS
+
+4. ValuationMethod record:
+   - FIFO
+
+5. MaterialCenter records (optional):
+   - MC001, MC002, MC003
+
+===============================================================================
+KEY CHANGES FROM OLD FORMAT:
+===============================================================================
+
+1. Item Type is now a ForeignKey (not a choice field)
+   - Must exist in ItemType table
+   
+2. Added 17 new columns for enhanced item management:
+   - GST & Tax: HSN Code, GST Rate
+   - Weight: Base Unit, Net Weight
+   - Costing: Purchase Rate, Sale Rate, Valuation Method
+   - Inventory: Minimum Stock, Maximum Stock, Reorder Qty
+   - Production: Making Time Minutes, Lead Time Days, BOM Required, Material Center
+   - Traceability: Batch Managed, GRN Required
+
+3. Default values will be applied for missing optional fields
+
+===============================================================================

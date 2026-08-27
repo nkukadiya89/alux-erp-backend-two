@@ -1,0 +1,8 @@
+category_code,category_name,allowed_item_type,description,
+RAW,Raw Materials,RAW,Raw aluminum materials including billets and ingots
+FG,Finished Goods,FG,Finished aluminum profiles and products
+CONSUMABLE,Consumables,CONSUMABLE,Consumable materials for production
+SEMI,Semi-Finished,SEMI,Semi-finished aluminum products
+SPARE,Spare Parts,SPARE,Spare parts for machinery and equipment
+SCRAP,Scrap Materials,SCRAP,Scrap aluminum for recycling
+TOOLING,Tooling,TOOLING,Dies and tooling equipment

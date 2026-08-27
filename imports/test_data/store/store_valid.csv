@@ -1,0 +1,11 @@
+Store Code,Store Name,Store Type,Plant Code,Allows Negative Stock
+ST001,Main Raw Material Store,RAW,PLANT 1,FALSE
+ST002,Scrap Storage,SCRAP,PLANT 1,FALSE
+ST003,Billet Warehouse,BILLET,PLANT 1,FALSE
+ST004,Finished Goods Warehouse,FG,PLANT 1,TRUE
+ST005,Work In Progress Store,WIP,PLANT 1,FALSE
+ST006,Secondary Raw Store,RAW,PLANT 1,FALSE
+ST007,Scrap Collection Point,SCRAP,PLANT 1,FALSE
+ST008,Production Store,WIP,PLANT 1,FALSE
+ST009,Main Finished Goods,FG,PLANT 1,TRUE
+ST010,Billet Storage Area,BILLET,PLANT 1,FALSE

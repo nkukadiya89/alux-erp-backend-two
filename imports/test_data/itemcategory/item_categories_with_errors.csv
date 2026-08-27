@@ -1,0 +1,22 @@
+Category Code,Category Name,Allowed Item Type,Description,Is Active
+ERR-001,Valid Test Category 1,RAW,This row should import successfully,TRUE
+ERR-001,Duplicate Category Code,CONSUMABLE,This has duplicate code - should error,TRUE
+ERR-003,Invalid Item Type Value,INVALID_TYPE,Invalid allowed_item_type value,TRUE
+ERR-004,,RAW,Missing category name - should error,TRUE
+ERR-005,Valid Test Category 2,RAW,This row should import successfully,TRUE
+ERR-006,Invalid Is Active Value,RAW,Invalid is_active - should error,INVALID
+ERR-007,Valid Test Category 3,CONSUMABLE,This row should import successfully,FALSE
+ERR-008,,RAW,Missing category name again,TRUE
+ERR-009,Special Chars in Code @#$%,RAW,Invalid category code pattern,TRUE
+ERR-010,Valid Test Category 4,FG,This row should import successfully,TRUE
+ERR-011,Invalid Item Type 2,SEMIFINISHED,Typo in item type,TRUE
+ERR-012,Valid Test Category 5,SPARE,This row should import successfully,TRUE
+ERR-013,Another Duplicate Code,SCRAP,Duplicate within file,TRUE
+ERR-013,Third Duplicate Code,TOOLING,Another duplicate,TRUE
+ERR-015,Valid Test Category 6,TOOLING,This row should import successfully,TRUE
+ERR-016,Missing Allowed Item Type,,"Missing allowed_item_type field",TRUE
+ERR-017,Valid Test Category 7,RAW,This row should import successfully,TRUE
+ERR-018,Invalid Item Type 3,WRONG_VALUE,Completely invalid value,TRUE
+ERR-019,Very Long Category Name That Exceeds Two Hundred and Fifty Five Characters Which Is The Maximum Length Allowed For Category Name Field And Should Trigger A Validation Error When Importing,RAW,Testing max length validation,TRUE
+ERR-020,Valid Test Category 8,SCRAP,This row should import successfully,TRUE
+

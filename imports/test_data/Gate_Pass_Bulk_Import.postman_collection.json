@@ -1,0 +1,165 @@
+{
+  "info": {
+    "name": "Gate Pass Bulk Import",
+    "description": "Postman collection for Gate Pass bulk import APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login - Get JWT Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"your-email@example.com\",\n    \"password\": \"your-password\",\n    \"keep_me_logged_in\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/get-token/",
+          "host": ["{{base_url}}"],
+          "path": ["get-token", ""]
+        },
+        "description": "Login to get JWT token. Token will be saved to environment manually."
+      }
+    },
+    {
+      "name": "Bulk Import Gate Pass (Dry Run)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "gate_pass_valid.csv"
+            },
+            {
+              "key": "dry_run",
+              "value": "true",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/gate-passes/bulk-import/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "gate-passes", "bulk-import", ""]
+        },
+        "description": "Validate Gate Pass CSV without saving to database."
+      }
+    },
+    {
+      "name": "Bulk Import Gate Pass (Commit)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "gate_pass_valid.csv"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/gate-passes/bulk-import/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "gate-passes", "bulk-import", ""]
+        },
+        "description": "Import Gate Pass records from CSV."
+      }
+    },
+    {
+      "name": "Get Gate Pass Import Logs",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/gate-passes/import-logs/?page=1&page_size=20",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "gate-passes", "import-logs", ""],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "page_size", "value": "20" }
+          ]
+        },
+        "description": "List all Gate Pass import logs."
+      }
+    },
+    {
+      "name": "Get Gate Pass Import Errors",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/gate-passes/{{import_log_id}}/import-errors/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "gate-passes", "{{import_log_id}}", "import-errors", ""]
+        },
+        "description": "Get detailed row-level errors for a specific Gate Pass import log."
+      }
+    },
+    {
+      "name": "Download Gate Pass Error Report (CSV)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/gate-passes/{{import_log_id}}/download-error-report/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "gate-passes", "{{import_log_id}}", "download-error-report", ""]
+        },
+        "description": "Download CSV error report for a specific Gate Pass import."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "jwt_token",
+      "value": ""
+    },
+    {
+      "key": "import_log_id",
+      "value": ""
+    }
+  ]
+}
+

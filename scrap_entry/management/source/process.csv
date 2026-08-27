@@ -1,0 +1,15 @@
+code,name
+EXTRUSION,Extrusion
+CUTTING,Cutting
+PRESS,Press
+MELTING,Melting
+CASTING,Casting
+ANODIZING,Anodizing
+POWDER-COAT,Powder Coating
+FABRICATION,Fabrication
+ASSEMBLY,Assembly
+QUALITY-CHECK,Quality Check
+PACKING,Packing
+DISPATCH,Dispatch
+MAINTENANCE,Maintenance
+TOOL-ROOM,Tool Room

@@ -1,0 +1,18 @@
+Department Code,Department Name,Department Type,Plant Name,Cost Center Code,Parent Department Code,Status
+DEPT-101,Valid Department 1,PRODUCTION,Mumbai Extrusion Plant,CC-101,,Active
+DEPT-101,Duplicate Code,STORE,Mumbai Extrusion Plant,CC-102,,Active
+DEPT-102,Invalid Department Type,INVALID_TYPE,Mumbai Extrusion Plant,CC-103,,Active
+DEPT-103,Invalid Plant Name,PRODUCTION,Non Existent Plant,CC-104,,Active
+DEPT-104,Invalid Status,PRODUCTION,Mumbai Extrusion Plant,CC-105,,InvalidStatus
+DEPT-105,,PRODUCTION,Mumbai Extrusion Plant,CC-106,,Active
+DEPT-106,Valid Department 2,STORE,Mumbai Extrusion Plant,CC-107,,Active
+DEPT-107,Invalid Parent Department,PRODUCTION,Mumbai Extrusion Plant,CC-108,INVALID-DEPT,Active
+DEPT-108,Parent in Different Plant,PRODUCTION,Delhi Assembly Unit,CC-109,DEPT-001,Active
+DEPT-109,Valid Department 3,QA,Mumbai Extrusion Plant,CC-110,,Active
+DEPT-110,Missing Plant Name,PRODUCTION,,CC-111,,Active
+DEPT-111,Valid Department 4,PURCHASE,Mumbai Extrusion Plant,CC-112,,Active
+DEPT-112,,PRODUCTION,Mumbai Extrusion Plant,CC-113,,Active
+DEPT-113,Valid Department 5,MAINTENANCE,Mumbai Extrusion Plant,CC-114,,Active
+DEPT-114,Invalid Cost Center Format,PRODUCTION,Mumbai Extrusion Plant,"This is a very long cost center code that exceeds the maximum length limit of 50 characters",,Active
+DEPT-115,Valid Department 6,FINANCE,Mumbai Extrusion Plant,CC-115,,Active
+

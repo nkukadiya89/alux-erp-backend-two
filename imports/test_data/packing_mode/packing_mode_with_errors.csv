@@ -1,0 +1,5 @@
+Name,Description
+Loose Packing,Items are packed loosely without any specific arrangement
+Loose Packing,Duplicate name should fail
+,Empty name should fail
+Box Packing,Items are packed in boxes
